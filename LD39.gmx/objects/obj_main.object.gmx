@@ -196,6 +196,37 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Hook
+var hook = mouse_check_button_pressed(mb_left) &amp;&amp; _canBeControlled;
+
+//
+{
+    if (_state != PlayerState.hooking || _state != PlayerState.pulling)
+    {
+        instance_create(x,y,obj_hook);
+        _state = PlayerState.hookthrowing;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
   </events>
   <PhysicsObject>0</PhysicsObject>

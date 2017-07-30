@@ -12,6 +12,7 @@
     <sprite>sprites\Main_Fall</sprite>
     <sprite>sprites\Main_Hang</sprite>
     <sprite>sprites\Main_Repair</sprite>
+    <sprite>sprites\Hook_Tip</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>

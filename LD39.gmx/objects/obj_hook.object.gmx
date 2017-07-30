@@ -3,7 +3,7 @@
   <spriteName>spr_hook</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,7 +25,95 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//collision_line(x,y,mouse_x,mouse_y,obj_solid,
+            <string>var mousePointDir = point_direction(x,y,mouse_x,mouse_y);
+var mouseHitLength = 300;
+_hittingObj = collision_line_first(x,y,mouse_x + lengthdir_x(mouseHitLength, mousePointDir),mouse_y + lengthdir_y(mouseHitLength, mousePointDir),obj_solid,0,false);
+_hookSpd = 16;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (_hittingObj)
+{
+    if (distance_to_point(_hittingObj.x + 8, _hittingObj.y + 8) &gt;= _hookSpd)
+        move_towards_point(_hittingObj.x + 8, _hittingObj.y + 8, _hookSpd);
+    else
+    {
+        x = _hittingObj.x + 8;
+        y = _hittingObj.y + 8;
+        speed = 0;
+        
+        if (obj_main._state != obj_main.PlayerState.hooking)
+        {           
+            obj_main._state = obj_main.PlayerState.hooking;
+        
+            var leftOpen, rightOpen, upOpen, downOpen;
+        
+            //Check up top
+            if (collision_point(_hittingObj.x + 8,_hittingObj.y + 8 - 16,obj_solid,false,true))
+                upOpen = false;
+            else
+                upOpen = true;
+            
+            //Check below
+            if (collision_point(_hittingObj.x + 8,_hittingObj.y + 8 + 16,obj_solid,false,true))
+               downOpen = false;
+            else
+                downOpen = true;
+            
+            //Check left
+            if (collision_point(_hittingObj.x + 8 - 16,_hittingObj.y + 8,obj_solid,false,true))
+                leftOpen = false;
+            else
+                leftOpen = true;
+            
+            //Check right
+            if (collision_point(_hittingObj.x + 8 + 16,_hittingObj.y + 8,obj_solid,false,true))
+                rightOpen = false;
+            else
+                rightOpen = true;
+        
+            if (obj_main.x &lt; _hittingObj.x) &amp;&amp; (leftOpen)
+            {
+                obj_main._hookX = _hittingObj.x - 16;
+                obj_main._hookY = _hittingObj.y + 20;
+            }
+            else if (obj_main.x &gt; _hittingObj.x) &amp;&amp; (rightOpen)
+            {
+                obj_main._hookX = _hittingObj.x + 16 + 16;
+                obj_main._hookY = _hittingObj.y + 20;
+            }
+            else if (obj_main.y &gt; _hittingObj.y) &amp;&amp; (downOpen)
+            {
+                obj_main._hookX = _hittingObj.x + 8;
+                obj_main._hookY = _hittingObj.y + 16 + 24;
+            }
+            else if (obj_main.y &lt; _hittingObj.y) &amp;&amp; (upOpen)
+            {
+                obj_main._hookX = _hittingObj.x + 8;
+                obj_main._hookY = _hittingObj.y - 16 - 24;
+            }
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

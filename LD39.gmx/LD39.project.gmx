@@ -10,13 +10,18 @@
       <sprite>sprites\spr_solid</sprite>
     </sprites>
     <sprites name="Main">
-      <sprite>sprites\spr_main_Idle</sprite>
+      <sprite>sprites\spr_main_idle</sprite>
       <sprite>sprites\spr_main_run</sprite>
       <sprite>sprites\spr_hook</sprite>
+      <sprite>sprites\spr_main_wallHang</sprite>
+      <sprite>sprites\spr_main_hanging</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\collision_line_first.gml</script>
+  </scripts>
   <objects name="objects">
     <objects name="Objects">
       <object>objects\obj_solid</object>

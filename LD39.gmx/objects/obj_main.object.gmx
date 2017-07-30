@@ -31,6 +31,7 @@ _spd=6;
 _jSpd=12;
 _hSpd=0;
 _vSpd=0;
+_hookedMvSpd = 32;
 
 _isGrappling = false;
 _inAir = false;
@@ -53,6 +54,8 @@ enum PlayerState
 
 _hookX = 0;
 _hookY = 0;
+
+_hookSide = "";
 </string>
           </argument>
         </arguments>
@@ -82,14 +85,36 @@ var hook = mouse_check_button_pressed(mb_left) &amp;&amp; _canBeControlled;
 {
     if ((_state != PlayerState.hooking || _state != PlayerState.pulling) &amp;&amp; (hook))
     {
+        if (instance_exists(obj_hook))
+        {
+            with (obj_hook) instance_destroy();
+            if (_state == PlayerState.stuck)
+            {
+                _state = PlayerState.falling;
+            }
+        }
         instance_create(x,y,obj_hook);
-        _state = PlayerState.hookthrowing;
     }
     
-    if (_state == PlayerState.hooking)
+    if (_state == PlayerState.hooking) &amp;&amp; (_state != PlayerState.stuck)
     {
-        x = _hookX;
-        y = _hookY;
+        if (distance_to_point(_hookX, _hookY) &gt;= _hookedMvSpd)
+            move_towards_point(_hookX, _hookY, _hookedMvSpd);
+        else
+        {
+            x = _hookX;
+            y = _hookY;
+            speed = 0;
+            _vSpd = 0;
+            _hSpd = 0;
+            if !(_hookSide == "d")
+                _state = PlayerState.stuck;
+            else
+            {
+                with (obj_hook) instance_destroy();
+                _state = PlayerState.idle;
+            }
+        }
     }
 }
 </string>
@@ -114,16 +139,17 @@ var hook = mouse_check_button_pressed(mb_left) &amp;&amp; _canBeControlled;
             <kind>1</kind>
             <string>/// Platform Physics
 
-var lkey=keyboard_check(vk_left) &amp;&amp; (_canBeControlled);
-var rkey=keyboard_check(vk_right) &amp;&amp; (_canBeControlled);
-var jkey=keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("Z")) &amp;&amp; (_canBeControlled);
-var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_canBeControlled);
+var lkey = (keyboard_check(vk_left) || keyboard_check(ord('A'))) &amp;&amp; (_canBeControlled);
+var rkey = (keyboard_check(vk_right) || keyboard_check(ord('D'))) &amp;&amp; (_canBeControlled);
+var dkey = (keyboard_check_pressed(vk_down) || keyboard_check(ord('S'))) &amp;&amp; (_canBeControlled);
+var jkey = (keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord('W'))) || keyboard_check_pressed(ord("Z")) &amp;&amp; (_canBeControlled);
+var jkey_held = (keyboard_check(vk_up) || keyboard_check(ord('W'))) || keyboard_check(ord("Z")) &amp;&amp; (_canBeControlled);
 
 //if (dead==0)
 {
 
     // Check for ground
-    if (_state != PlayerState.hooking)
+    if ((_state != PlayerState.hooking) &amp;&amp; (_state != PlayerState.stuck))
     {   
         if (place_meeting(x,y+1,obj_solid)) 
         {
@@ -132,6 +158,11 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
             if (jkey)
             {
                 _vSpd = -_jSpd;
+                
+                /*if (_state == PlayerState.stuck)
+                {
+                    _state = PlayerState.jumping;
+                     with (obj_hook) instance_destroy();}*/
             
                 //if (obj_camera.world==1)
                     //audio_play_sound(snd_jump,10,0);
@@ -155,7 +186,7 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
     // Moving right
     if (rkey)
     {
-        if (_state != PlayerState.hooking)
+        if ((_state != PlayerState.hooking) &amp;&amp; (_state != PlayerState.stuck))
         {
             if (_hSpd&lt;_spd)
                 _hSpd += 1;
@@ -165,12 +196,16 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
            
         if place_meeting(x,y+1,obj_solid)
             _state = PlayerState.running;
+            
+        /*if (_state == PlayerState.stuck)
+        {    _state = PlayerState.falling;
+            with (obj_hook) instance_destroy();}*/
     }
 
     // Moving left
     if (lkey)
     {
-        if (_state != PlayerState.hooking)
+        if ((_state != PlayerState.hooking) &amp;&amp; (_state != PlayerState.stuck))
         {
              if (_hSpd&gt;-_spd)
                _hSpd -= 1;
@@ -180,6 +215,10 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
         
         if place_meeting(x,y+1,obj_solid)
             _state = PlayerState.running;
+            
+        /*if (_state == PlayerState.stuck)
+{            _state = PlayerState.falling;
+             with (obj_hook) instance_destroy();}*/
     }
 
     // Check for not moving
@@ -193,6 +232,13 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
         
         if place_meeting(x,y+1,obj_solid)
             _state = PlayerState.idle;
+    }
+    
+    //Fall from stuck
+    if ((dkey) &amp;&amp; (_state == PlayerState.stuck))
+    {
+        _state = PlayerState.falling;
+        with (obj_hook) instance_destroy();
     }
 
     // Horizontal collisions
@@ -210,11 +256,11 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
     //if (move==0)
     //    _hSpd=0;
     
-    if (_state != PlayerState.hooking)    
+    if (_state != PlayerState.hooking) &amp;&amp; (_state != PlayerState.stuck) 
         x += _hSpd;
     
     //Face correct side
-    if (_hSpd!=0)
+    if (_hSpd != 0)
         image_xscale = -sign(_hSpd);
 
     // Vertical collisions
@@ -240,6 +286,79 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
         y += _vSpd;
 
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Sprites
+
+if (_state == PlayerState.stuck)
+{
+    if (_hookSide == "r")
+    {
+        sprite_index = spr_main_wallHang;
+        image_xscale = 1;
+    }
+    if (_hookSide == "l")
+    {
+        sprite_index = spr_main_wallHang;
+        image_xscale = -1;
+    }
+    if (_hookSide == "u")
+    {
+        sprite_index = spr_main_hanging;
+    }
+}
+else if (_state == PlayerState.idle)
+{
+    sprite_index = spr_main_idle;
+    image_speed = .25;
+}
+else if (_state == PlayerState.running)
+{
+    sprite_index = spr_main_run;
+    image_speed = .25;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+draw_text(x, y - 31, string(_hookSide) + " " + string(_state));
 </string>
           </argument>
         </arguments>

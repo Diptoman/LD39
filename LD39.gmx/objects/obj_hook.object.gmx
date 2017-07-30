@@ -53,12 +53,12 @@ _hookSpd = 16;
             <kind>1</kind>
             <string>if (_hittingObj)
 {
-    if (distance_to_point(_hittingObj.x + 8, _hittingObj.y + 8) &gt;= _hookSpd)
-        move_towards_point(_hittingObj.x + 8, _hittingObj.y + 8, _hookSpd);
+    if (distance_to_point(_hittingObj.x + 4, _hittingObj.y + 4) &gt;= _hookSpd)
+        move_towards_point(_hittingObj.x + 4, _hittingObj.y + 4, _hookSpd);
     else
     {
-        x = _hittingObj.x + 8;
-        y = _hittingObj.y + 8;
+        x = _hittingObj.x + 4;
+        y = _hittingObj.y + 4;
         speed = 0;
         
         if (obj_main._state != obj_main.PlayerState.hooking)
@@ -68,25 +68,25 @@ _hookSpd = 16;
             var leftOpen, rightOpen, upOpen, downOpen;
         
             //Check up top
-            if (collision_point(_hittingObj.x + 8,_hittingObj.y + 8 - 16,obj_solid,false,true))
+            if (collision_point(_hittingObj.x + 4,_hittingObj.y + 4 - 8,obj_solid,false,true))
                 upOpen = false;
             else
                 upOpen = true;
             
             //Check below
-            if (collision_point(_hittingObj.x + 8,_hittingObj.y + 8 + 16,obj_solid,false,true))
+            if (collision_point(_hittingObj.x + 4,_hittingObj.y + 4 + 8,obj_solid,false,true))
                downOpen = false;
             else
                 downOpen = true;
             
             //Check left
-            if (collision_point(_hittingObj.x + 8 - 16,_hittingObj.y + 8,obj_solid,false,true))
+            if (collision_point(_hittingObj.x + 4 - 8,_hittingObj.y + 4,obj_solid,false,true))
                 leftOpen = false;
             else
                 leftOpen = true;
             
             //Check right
-            if (collision_point(_hittingObj.x + 8 + 16,_hittingObj.y + 8,obj_solid,false,true))
+            if (collision_point(_hittingObj.x + 4 + 8,_hittingObj.y + 4,obj_solid,false,true))
                 rightOpen = false;
             else
                 rightOpen = true;
@@ -94,22 +94,26 @@ _hookSpd = 16;
             if (obj_main.x &lt; _hittingObj.x) &amp;&amp; (leftOpen)
             {
                 obj_main._hookX = _hittingObj.x - 16;
-                obj_main._hookY = _hittingObj.y + 20;
+                obj_main._hookY = _hittingObj.y + 12;
+                obj_main._hookSide = "r";
             }
             else if (obj_main.x &gt; _hittingObj.x) &amp;&amp; (rightOpen)
             {
-                obj_main._hookX = _hittingObj.x + 16 + 16;
-                obj_main._hookY = _hittingObj.y + 20;
+                obj_main._hookX = _hittingObj.x + 16 + 8;
+                obj_main._hookY = _hittingObj.y + 12;
+                obj_main._hookSide = "l";
             }
             else if (obj_main.y &gt; _hittingObj.y) &amp;&amp; (downOpen)
             {
-                obj_main._hookX = _hittingObj.x + 8;
-                obj_main._hookY = _hittingObj.y + 16 + 24;
+                obj_main._hookX = _hittingObj.x + 4;
+                obj_main._hookY = _hittingObj.y + 8 + 24;
+                obj_main._hookSide = "u";
             }
             else if (obj_main.y &lt; _hittingObj.y) &amp;&amp; (upOpen)
             {
-                obj_main._hookX = _hittingObj.x + 8;
-                obj_main._hookY = _hittingObj.y - 16 - 24;
+                obj_main._hookX = _hittingObj.x + 4;
+                obj_main._hookY = _hittingObj.y - 1;
+                obj_main._hookSide = "d";
             }
         }
     }

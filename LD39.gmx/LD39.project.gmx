@@ -7,6 +7,11 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\Main_Idle</sprite>
+    <sprite>sprites\Main_Run</sprite>
+    <sprite>sprites\Main_Jump</sprite>
+    <sprite>sprites\Main_Fall</sprite>
+    <sprite>sprites\Main_Hang</sprite>
+    <sprite>sprites\Main_Repair</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>

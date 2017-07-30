@@ -11,14 +11,18 @@
     </sprites>
     <sprites name="Main">
       <sprite>sprites\spr_main_Idle</sprite>
+      <sprite>sprites\spr_hook</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <objects name="objects">
-    <object>objects\obj_main</object>
     <objects name="Objects">
       <object>objects\obj_solid</object>
+    </objects>
+    <objects name="Main">
+      <object>objects\obj_hook</object>
+      <object>objects\obj_main</object>
     </objects>
     <object>objects\obj_control</object>
   </objects>

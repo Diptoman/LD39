@@ -35,6 +35,20 @@ _vSpd=0;
 _isGrappling = false;
 _inAir = false;
 _canBeControlled = true;
+
+_state = PlayerState.idle;
+
+enum PlayerState
+{
+    idle,
+    running,
+    jumping,
+    falling,
+    hookthrowing,
+    hooking,
+    pulling,
+    fixing
+}
 </string>
           </argument>
         </arguments>
@@ -70,11 +84,11 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
     // Check for ground
     if (place_meeting(x,y+1,obj_solid)) 
     {
-        _vSpd=0;
+        _vSpd = 0;
     
         if (jkey)
         {
-            _vSpd=-_jSpd;
+            _vSpd = -_jSpd;
             
             //if (obj_camera.world==1)
                 //audio_play_sound(snd_jump,10,0);
@@ -83,20 +97,15 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
     else 
     {
         // Gravity
-        if (_vSpd&lt;10)
+        if (_vSpd &lt; 10)
         {
-            _vSpd+=_grav;
+            _vSpd += _grav;
         }
         
         if (_vSpd&lt;0) &amp;&amp; (!jkey_held)
         {
-            _vSpd = max(_vSpd,_vSpd+2);
+            _vSpd = max(_vSpd,_vSpd + 2);
         }
-    }
-    
-    if (_vSpd!=0)
-    {
-        //sprite_index=spr_VRplayer_jump;
     }
 
     // Moving right
@@ -107,20 +116,25 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
         else
             _hSpd=_spd;
             
-        //if place_meeting(x,y+1,obj_solid)
-            //sprite_index=spr_VRplayer_run;
+        _state = PlayerState.running;
+            
+        if place_meeting(x,y+1,obj_solid)
+            _state = PlayerState.running;
     }
 
     // Moving left
     if (lkey)
     {
-        if (_hSpd&gt;-_spd)
-            _hSpd -= 1;
-        else
-            _hSpd = -_spd;
-            
-        //if place_meeting(x,y+1,obj_solid)
-            //sprite_index=spr_VRplayer_run;
+        if (_state != PlayerState.hooking)
+        {
+             if (_hSpd&gt;-_spd)
+               _hSpd -= 1;
+            else
+                _hSpd = -_spd;
+        }
+        
+        if place_meeting(x,y+1,obj_solid)
+            _state = PlayerState.running;
     }
 
     // Check for not moving
@@ -132,8 +146,8 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
             _hSpd += 1;
         else _hSpd = 0;
         
-        //if place_meeting(x,y+1,obj_solid)
-            //sprite_index=spr_VRplayer_stand;
+        if place_meeting(x,y+1,obj_solid)
+            _state = PlayerState.idle;
     }
 
     // Horizontal collisions
@@ -169,6 +183,12 @@ var jkey_held=keyboard_check(vk_up) || keyboard_check(ord("Z")) &amp;&amp; (_can
     // Move vertically
     //if (dead==1)
         //_vSpd=0;
+        
+    if (_vSpd &gt; 0)
+        _state = PlayerState.falling;
+    else if (_vSpd &lt; 0)
+        _state = PlayerState.jumping;
+        
     y += _vSpd;
 
 }

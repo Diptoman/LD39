@@ -31,7 +31,7 @@ _viewX2 = 0;
 _viewY2 = 0;
 
 _shake = 0;
-_viewDist = 3.5;
+_viewDist = 4;
 </string>
           </argument>
         </arguments>

@@ -12,6 +12,9 @@
     <sprites name="Main">
       <sprite>sprites\spr_main_Idle</sprite>
       <sprite>sprites\spr_main_run</sprite>
+      <sprite>sprites\spr_main_repair</sprite>
+      <sprite>sprites\spr_main_jump</sprite>
+      <sprite>sprites\spr_main_fall</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>

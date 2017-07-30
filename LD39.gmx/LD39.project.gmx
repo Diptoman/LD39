@@ -6,16 +6,25 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\Main_Idle</sprite>
-    <sprite>sprites\Main_Run</sprite>
-    <sprite>sprites\Main_Jump</sprite>
-    <sprite>sprites\Main_Fall</sprite>
-    <sprite>sprites\Main_Hang</sprite>
-    <sprite>sprites\Main_Repair</sprite>
-    <sprite>sprites\Hook_Tip</sprite>
+    <sprites name="Objects">
+      <sprite>sprites\spr_solid</sprite>
+    </sprites>
+    <sprites name="Main">
+      <sprite>sprites\spr_main_Idle</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <objects name="objects">
+    <object>objects\obj_main</object>
+    <objects name="Objects">
+      <object>objects\obj_solid</object>
+    </objects>
+    <object>objects\obj_control</object>
+  </objects>
+  <rooms name="rooms">
+    <room>rooms\room0</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>

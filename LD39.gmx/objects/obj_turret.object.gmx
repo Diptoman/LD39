@@ -88,7 +88,7 @@ alarm[2] = 30 - _lvl;
           <argument>
             <kind>1</kind>
             <string>///Charge
-incAmt = 6 + _lvl;
+incAmt = 8 + _lvl;
 
 if (obj_control._currentPower &gt;= incAmt) &amp;&amp; (_power &lt; _maxPower)
 {

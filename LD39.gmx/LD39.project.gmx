@@ -142,6 +142,7 @@
       <sprite>sprites\sLaser</sprite>
       <sprite>sprites\sCredits_Programmer</sprite>
     </sprites>
+    <sprite>sprites\sprite32</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -226,11 +227,12 @@
     <object>objects\oPlayer</object>
     <object>objects\oBlock</object>
     <object>objects\oBlock_Curve</object>
+    <object>objects\object21</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_MainLevel</room>
     <room>rooms\room0</room>
     <room>rooms\room1</room>
-    <room>rooms\rm_MainLevel</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

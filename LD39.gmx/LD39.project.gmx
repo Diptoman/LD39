@@ -144,8 +144,10 @@
       <sprite>sprites\spr_coreBar_front</sprite>
       <sprite>sprites\spr_cursor</sprite>
       <sprite>sprites\spr_scrap_UI</sprite>
+      <sprite>sprites\spr_smallScrap</sprite>
       <sprite>sprites\spr_core_UI</sprite>
       <sprite>sprites\spr_arrow</sprite>
+      <sprite>sprites\spr_space</sprite>
     </sprites>
     <sprites name="Laser">
       <sprite>sprites\sPlayer</sprite>
@@ -156,7 +158,11 @@
       <sprite>sprites\sCredits_Programmer</sprite>
     </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bg_tile1</background>
+    <background>background\bg_tile2</background>
+    <background>background\bg_tile3</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\collision_line_first.gml</script>
@@ -212,6 +218,7 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_main</font>
+    <font>fonts\fnt_small</font>
   </fonts>
   <objects name="objects">
     <objects name="Objects">
@@ -250,6 +257,11 @@
     <object>objects\oPlayer</object>
     <object>objects\oBlock</object>
     <object>objects\oBlock_Curve</object>
+    <objects name="UI">
+      <object>objects\obj_space</object>
+      <object>objects\obj_boost</object>
+      <object>objects\obj_repair</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_MainLevel_new</room>

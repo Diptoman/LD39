@@ -25,8 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>_power = 150;
-_maxPower = 150;
+            <string>_power = 1500;
+_maxPower = 1500;
 
 image_speed = .25;
 </string>

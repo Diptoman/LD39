@@ -108,7 +108,8 @@ else
     xx = floor(random(room_width));
 }
 
-for(i = 0; i &lt; 4 + floor(_wave / 2); i++)
+num = 4 + min(floor(_wave / 2), 8);
+for(i = 0; i &lt; num; i++)
 {
     inst = choose(obj_enemy1, obj_enemy2);
     instance_create(xx - 16 + floor(random(32)), yy - 16 + floor(random(32)), inst);
@@ -118,6 +119,7 @@ _wave += 1;
 
 if (_waveGap &gt; _minWaveGap)
     _waveGap -= .5;
+    
     
 alarm[0] = _waveGap * 30;
 </string>
@@ -204,7 +206,7 @@ draw_sprite(spr_core_UI, 0, xx + 4, yy + 4 + 14);
 
 draw_sprite(spr_scrap_UI, 0, xx + view_hview + 20, yy + 4);
 draw_set_font(fnt_main);
-draw_set_halign(fa_top);
+draw_set_valign(fa_top);
 draw_set_halign(fa_left);
 draw_set_color(c_white);
 draw_text_outline(xx + view_hview + 48, yy + 4, " x " + string(_currentScrap), 1, c_black, 8);

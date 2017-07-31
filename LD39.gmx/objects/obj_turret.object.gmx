@@ -33,6 +33,36 @@ _lvlMax = 5;
 alarm[0] = 30 - _lvl;
 
 _target = noone;
+
+ui = noone;
+
+_overlapping = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (instance_exists(ui))
+{
+    ui._state = 2;
+}
 </string>
           </argument>
         </arguments>
@@ -88,7 +118,7 @@ alarm[2] = 30 - _lvl;
           <argument>
             <kind>1</kind>
             <string>///Charge
-incAmt = 8 + _lvl;
+incAmt = 12 + _lvl;
 
 if (obj_control._currentPower &gt;= incAmt) &amp;&amp; (_power &lt; _maxPower)
 {
@@ -133,6 +163,33 @@ _power -= (1 + (_lvl - 1) / 2);
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (_overlapping == false) &amp;&amp; (instance_exists(ui))
+{
+    if (ui._state == 1)
+        ui._state = 2;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -151,6 +208,8 @@ _power -= (1 + (_lvl - 1) / 2);
           <argument>
             <kind>1</kind>
             <string>image_speed = 1/12 +  (_lvl / _lvlMax) * (1/6);
+
+_overlapping = false;
 
 if (_power &lt; 0)
 {
@@ -228,7 +287,15 @@ if (charge)
     
     if (alarm[1] &lt; 0)
         alarm[1] = 10;
+    
 }
+
+if (!instance_exists(ui))
+    {
+        ui = instance_create(x, y - 8, obj_space);
+    }
+    
+_overlapping = true;
 </string>
           </argument>
         </arguments>
@@ -255,6 +322,26 @@ if (charge)
 subimg = 15 - floor((_power / _maxPower) * 15);
 draw_sprite_ext(spr_power_UI,subimg,x,y - 56,1,1,0,c_white,1);
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>

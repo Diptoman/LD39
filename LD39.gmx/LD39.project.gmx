@@ -251,6 +251,7 @@
     <object>objects\oBlock_Curve</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_MainLevel_new</room>
     <room>rooms\room0</room>
     <room>rooms\rm_MainLevel</room>
   </rooms>

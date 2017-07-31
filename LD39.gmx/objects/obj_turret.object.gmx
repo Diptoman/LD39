@@ -160,7 +160,7 @@ if (_power &lt; 0)
 
 if (_target == noone)
 {
-    _target = collision_circle(x,y,180,obj_enemy,0,0);
+    _target = collision_circle(x,y,200,obj_enemy,0,0);
 }
 
 if (instance_exists(_target))

@@ -31,6 +31,40 @@ _maxPower = 100;
 _lvlMax = 5;
 
 alarm[0] = 30 - _lvl;
+
+_target = noone;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Shoot
+if (instance_exists(_target))
+{
+    a = instance_create(x,y - 32,obj_turretBullet);
+    a.direction = point_direction(x,y - 32,_target.x,_target.y);
+    a.speed = 8;
+    a._lvl = _lvl;
+}
+
+alarm[2] = 30 - _lvl;
 </string>
           </argument>
         </arguments>
@@ -53,7 +87,8 @@ alarm[0] = 30 - _lvl;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>incAmt = 4 + 2 * (_lvl / 5);
+            <string>///Charge
+incAmt = 6 + _lvl;
 
 if (obj_control._currentPower &gt;= incAmt) &amp;&amp; (_power &lt; _maxPower)
 {
@@ -91,7 +126,7 @@ if (obj_control._currentPower &gt;= incAmt) &amp;&amp; (_power &lt; _maxPower)
           <argument>
             <kind>1</kind>
             <string>///Decrease energy
-alarm[0] = 30 - _lvl;
+alarm[0] = 45 - _lvl;
 _power -= (1 + _lvl / 2);
 </string>
           </argument>
@@ -116,6 +151,53 @@ _power -= (1 + _lvl / 2);
           <argument>
             <kind>1</kind>
             <string>image_speed = 1/12 +  (_lvl / _lvlMax) * (1/6);
+
+if (_power &lt; 0)
+{
+    instance_create(x,y,obj_turretDest);
+    instance_destroy();
+}
+
+if (_target == noone)
+{
+    _target = collision_circle(x,y,180,obj_enemy,0,0);
+}
+
+if (instance_exists(_target))
+{
+    if (alarm[2] &lt; 0)
+        alarm[2] = 45 - _lvl;
+}
+else
+{
+    _target = noone;
+}
+    
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_enemyBullet">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>_power -= 3;
+instance_create(other.x,other.y,obj_enemyBulletDest);
+with (other) instance_destroy();
 </string>
           </argument>
         </arguments>

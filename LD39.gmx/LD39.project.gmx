@@ -3,13 +3,109 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
-  <sounds name="sound"/>
+  <datafiles number="5" name="datafiles">
+    <datafiles number="5" name="TweenGMS">
+      <datafile>
+        <name>Starter_Guide.html</name>
+        <exists>-1</exists>
+        <size>57974</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Starter_Guide.html</filename>
+      </datafile>
+      <datafile>
+        <name>Script_Reference.html</name>
+        <exists>-1</exists>
+        <size>100927</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Script_Reference.html</filename>
+      </datafile>
+      <datafile>
+        <name>Project_Downloads.txt</name>
+        <exists>-1</exists>
+        <size>634</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Project_Downloads.txt</filename>
+      </datafile>
+      <datafile>
+        <name>Update_Log.txt</name>
+        <exists>-1</exists>
+        <size>9436</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Update_Log.txt</filename>
+      </datafile>
+      <datafile>
+        <name>Required Changes.txt</name>
+        <exists>-1</exists>
+        <size>10638</size>
+        <exportAction>2</exportAction>
+        <exportDir></exportDir>
+        <overwrite>0</overwrite>
+        <freeData>-1</freeData>
+        <removeEnd>0</removeEnd>
+        <store>0</store>
+        <ConfigOptions>
+          <Config name="Default">
+            <CopyToMask>9223372036854775807</CopyToMask>
+          </Config>
+        </ConfigOptions>
+        <filename>Required Changes.txt</filename>
+      </datafile>
+    </datafiles>
+  </datafiles>
+  <NewExtensions>
+    <extension index="0">extensions\TweenGMS</extension>
+    <extension index="1">extensions\Laser Example</extension>
+  </NewExtensions>
+  <sounds name="sound">
+    <sound>sound\sndLaser</sound>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Objects">
       <sprite>sprites\spr_solid</sprite>
       <sprite>sprites\spr_turret</sprite>
       <sprite>sprites\spr_turret_down</sprite>
+      <sprite>sprites\spr_turretBullet</sprite>
+      <sprite>sprites\spr_turretBullet_dest</sprite>
     </sprites>
     <sprites name="Main">
       <sprite>sprites\spr_main_idle</sprite>
@@ -23,12 +119,13 @@
       <sprite>sprites\spr_main_fixing</sprite>
     </sprites>
     <sprites name="Enemies">
-      <sprite>sprites\obj_enemy1_roam</sprite>
+      <sprite>sprites\spr_enemy1_roam</sprite>
       <sprite>sprites\spr_enemy1_fire</sprite>
       <sprite>sprites\spr_enemy1_destroy</sprite>
       <sprite>sprites\spr_enemy2_hover</sprite>
       <sprite>sprites\spr_enemy2_destroy</sprite>
       <sprite>sprites\spr_bullet</sprite>
+      <sprite>sprites\spr_enemybulletDest</sprite>
     </sprites>
     <sprites name="UI">
       <sprite>sprites\spr_power_UI</sprite>
@@ -37,11 +134,67 @@
       <sprite>sprites\spr_bar_front</sprite>
       <sprite>sprites\spr_cursor</sprite>
     </sprites>
+    <sprites name="Laser">
+      <sprite>sprites\sPlayer</sprite>
+      <sprite>sprites\sBlock_Curve</sprite>
+      <sprite>sprites\sBlock</sprite>
+      <sprite>sprites\sSparks</sprite>
+      <sprite>sprites\sLaser</sprite>
+      <sprite>sprites\sCredits_Programmer</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\collision_line_first.gml</script>
+    <scripts name="TweenGMS">
+      <scripts name="Core">
+        <script>scripts\Ease.gml</script>
+        <script>scripts\TweenNull.gml</script>
+        <script>scripts\TweenFire.gml</script>
+        <script>scripts\TweenCreate.gml</script>
+        <script>scripts\TweenPlay.gml</script>
+        <script>scripts\TweenPause.gml</script>
+        <script>scripts\TweenResume.gml</script>
+        <script>scripts\TweenStop.gml</script>
+        <script>scripts\TweenFinish.gml</script>
+        <script>scripts\TweenFinishDelay.gml</script>
+        <script>scripts\TweenReverse.gml</script>
+        <script>scripts\TweenDestroy.gml</script>
+        <script>scripts\TGMS_TweenBool.gml</script>
+        <script>scripts\TGMS_Callback.gml</script>
+        <script>scripts\TGMS_Event.gml</script>
+        <script>scripts\TGMS_TweenGet.gml</script>
+        <script>scripts\TGMS_TweenSet.gml</script>
+        <script>scripts\TGMS_Utility.gml</script>
+        <script>scripts\SharedTweener.gml</script>
+      </scripts>
+      <scripts name="Eases and Properties">
+        <script>scripts\Default_Ease_Algorithms.gml</script>
+        <script>scripts\Default_Property_Setters.gml</script>
+        <script>scripts\Default_Property_Setters_Ext.gml</script>
+      </scripts>
+      <scripts name="Extra (Not Required)">
+        <script>scripts\TPExt.gml</script>
+        <script>scripts\TweenCalc.gml</script>
+        <script>scripts\TweenStep.gml</script>
+        <script>scripts\TweenDefault.gml</script>
+        <script>scripts\TweenPath.gml</script>
+        <script>scripts\TGMS_TweenSimple.gml</script>
+        <script>scripts\TGMS_TweenDataStructure.gml</script>
+        <script>scripts\TGMS_TweenView.gml</script>
+        <script>scripts\TGMS_TweenBackground.gml</script>
+        <script>scripts\TGMS_TweenTile.gml</script>
+        <script>scripts\TGMS_TweenSystem.gml</script>
+      </scripts>
+      <scripts name="Deprecated (Please Remove)">
+        <script>scripts\TweenCopy.gml</script>
+        <script>scripts\TweenDefine.gml</script>
+      </scripts>
+    </scripts>
+    <script>scripts\scrLaser.gml</script>
+    <script>scripts\scrDraw_Laser.gml</script>
+    <script>scripts\scrDesvanecer.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="Objects">
@@ -51,15 +204,32 @@
       <object>objects\obj_hook</object>
       <object>objects\obj_main</object>
       <object>objects\obj_turret</object>
+      <object>objects\obj_turretDest</object>
+      <object>objects\obj_turretBullet</object>
+      <object>objects\obj_bulletImpact</object>
     </objects>
     <object>objects\obj_control</object>
     <object>objects\obj_cursor</object>
     <objects name="Enemies">
       <object>objects\obj_enemy1</object>
+      <object>objects\obj_enemy2</object>
+      <object>objects\obj_enemy1Dest</object>
+      <object>objects\obj_enemy2Dest</object>
+      <object>objects\obj_enemy</object>
+      <object>objects\obj_enemyBulletDest</object>
+      <object>objects\obj_enemyBullet</object>
     </objects>
+    <objects name="TweenGMS">
+      <object>objects\obj_SharedTweener</object>
+    </objects>
+    <object>objects\oCredits</object>
+    <object>objects\oPlayer</object>
+    <object>objects\oBlock</object>
+    <object>objects\oBlock_Curve</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
+    <room>rooms\room1</room>
     <room>rooms\rm_MainLevel</room>
   </rooms>
   <help>

@@ -39,6 +39,10 @@ _maxPower = 400;
 window_set_cursor(cr_none);
 cursor_sprite = spr_cursor;
 //instance_create(mouse_x, mouse_y, obj_cursor);
+
+randomize();
+
+precision = 1;
 </string>
           </argument>
         </arguments>

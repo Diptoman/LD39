@@ -232,6 +232,15 @@
     <instance objName="obj_solid" x="336" y="264" name="inst_90EF1F89" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_solid" x="328" y="264" name="inst_BCF6017D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_turret" x="376" y="248" name="inst_7E7F726C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_turret" x="648" y="256" name="inst_98E1DC9C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy2" x="24" y="80" name="inst_6E231B9D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy2" x="48" y="48" name="inst_891FBCAF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy2" x="80" y="32" name="inst_FD3DA39D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy2" x="24" y="152" name="inst_E4248C9C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy1" x="120" y="64" name="inst_C576F9AD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy1" x="56" y="152" name="inst_73F628AA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy1" x="104" y="128" name="inst_C77E16B0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy1" x="152" y="32" name="inst_A7043D82" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

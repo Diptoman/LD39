@@ -30,7 +30,7 @@ _target = instance_nearest(x,y,obj_turret);
 
 if (_target == noone)
 {
-    //_target =
+    _target = instance_nearest(x,y,obj_core);
 }
 
 if (_target != noone)
@@ -46,7 +46,7 @@ _shooting = false;
 frame = 0;
 precision = 1;
 
-_health = 6;
+_health = 4;
 
 image_speed = .25;
 </string>
@@ -144,7 +144,7 @@ if (instance_exists(_target))
     {
         _moving = false;
         if (alarm[0] &lt; 0)
-            alarm[0] = 90;
+            alarm[0] = 45 + floor(random(15));
     }
 }
 else
@@ -153,7 +153,7 @@ else
 
     if (_target == noone)
     {
-        //_target =
+        _target = instance_nearest(x,y,obj_core);
     }
 
     if (_target != noone)

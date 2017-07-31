@@ -28,11 +28,11 @@
             <string>_comfortDistance = 64 + floor(random(16));
 _target = instance_nearest(x,y,obj_turret);
 
-_period = 50 + floor(random(20));
+_period = 30 + floor(random(20));
 
 if (_target == noone)
 {
-    //_target =
+    _target = instance_nearest(x,y,obj_core);
 }
 
 if (_target != noone)
@@ -48,7 +48,7 @@ _shooting = false;
 frame = 0;
 precision = 1;
 
-_health = 6;
+_health = 4;
 </string>
           </argument>
         </arguments>
@@ -154,7 +154,7 @@ else
 
     if (_target == noone)
     {
-        //_target =
+        _target = instance_nearest(x,y,obj_core);
     }
 
     if (_target != noone)

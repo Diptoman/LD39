@@ -95,6 +95,7 @@
   <NewExtensions>
     <extension index="0">extensions\TweenGMS</extension>
     <extension index="1">extensions\Laser Example</extension>
+    <extension index="2">extensions\Draw Text Outlined</extension>
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\sndLaser</sound>
@@ -106,6 +107,14 @@
       <sprite>sprites\spr_turret_down</sprite>
       <sprite>sprites\spr_turretBullet</sprite>
       <sprite>sprites\spr_turretBullet_dest</sprite>
+      <sprite>sprites\spr_batterySynth</sprite>
+      <sprite>sprites\spr_batteryCreate</sprite>
+      <sprite>sprites\spr_battery</sprite>
+      <sprite>sprites\spr_batteryGet</sprite>
+      <sprite>sprites\spr_scrap</sprite>
+      <sprite>sprites\spr_scrapGet</sprite>
+      <sprite>sprites\spr_core</sprite>
+      <sprite>sprites\spr_core_destroy</sprite>
     </sprites>
     <sprites name="Main">
       <sprite>sprites\spr_main_idle</sprite>
@@ -132,7 +141,10 @@
       <sprite>sprites\spr_playerPower</sprite>
       <sprite>sprites\spr_bar_back</sprite>
       <sprite>sprites\spr_bar_front</sprite>
+      <sprite>sprites\spr_coreBar_front</sprite>
       <sprite>sprites\spr_cursor</sprite>
+      <sprite>sprites\spr_scrap_UI</sprite>
+      <sprite>sprites\spr_core_UI</sprite>
     </sprites>
     <sprites name="Laser">
       <sprite>sprites\sPlayer</sprite>
@@ -195,10 +207,20 @@
     <script>scripts\scrLaser.gml</script>
     <script>scripts\scrDraw_Laser.gml</script>
     <script>scripts\scrDesvanecer.gml</script>
+    <script>scripts\draw_text_outline.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_main</font>
+  </fonts>
   <objects name="objects">
     <objects name="Objects">
+      <object>objects\obj_synth</object>
       <object>objects\obj_solid</object>
+      <object>objects\obj_batteryTaken</object>
+      <object>objects\obj_scrapTaken</object>
+      <object>objects\obj_battery</object>
+      <object>objects\obj_scrap</object>
+      <object>objects\obj_core</object>
     </objects>
     <objects name="Main">
       <object>objects\obj_hook</object>
@@ -207,6 +229,7 @@
       <object>objects\obj_turretDest</object>
       <object>objects\obj_turretBullet</object>
       <object>objects\obj_bulletImpact</object>
+      <object>objects\obj_attackable</object>
     </objects>
     <object>objects\obj_control</object>
     <object>objects\obj_cursor</object>
@@ -230,7 +253,6 @@
   <rooms name="rooms">
     <room>rooms\room0</room>
     <room>rooms\rm_MainLevel</room>
-    <room>rooms\room1</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

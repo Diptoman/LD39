@@ -8,7 +8,7 @@ dir = argument1;  //Direction
 
 
 // Check collision with object Block
-for(i=0;(i  < length )&& !(collision_point(xx+lengthdir_x(i,dir),yy+lengthdir_y(i,dir),obj_turret,1,1));i+=precision){
+for(i=0;(i  < length )&& !(collision_point(xx+lengthdir_x(i,dir),yy+lengthdir_y(i,dir),obj_attackable,1,1));i+=precision){
     dis = i
 }
 

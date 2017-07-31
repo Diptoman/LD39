@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_attackable</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>_lvl = 5;
+            <string>_lvl = 1;
 _power = 100;
 _maxPower = 100;
 _lvlMax = 5;
@@ -166,7 +166,7 @@ if (_target == noone)
 if (instance_exists(_target))
 {
     if (alarm[2] &lt; 0)
-        alarm[2] = 45 - _lvl;
+        alarm[2] = 30 - _lvl;
 }
 else
 {

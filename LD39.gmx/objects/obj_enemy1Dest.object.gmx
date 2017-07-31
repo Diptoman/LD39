@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = .25;
+instance_create(x,y,obj_scrap);
 </string>
           </argument>
         </arguments>

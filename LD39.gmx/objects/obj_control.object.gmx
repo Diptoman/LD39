@@ -33,7 +33,8 @@ _viewY2 = 0;
 _shake = 0;
 _viewDist = 4;
 
-_currentPower = 156;
+_currentPower = 200;
+_currentScrap = 0;
 _maxPower = 400;
 
 window_set_cursor(cr_none);
@@ -112,11 +113,25 @@ precision = 1;
             <kind>1</kind>
             <string>xx = view_xview;
 yy = view_yview;
-draw_sprite(spr_bar_back, 0, xx + 4 + 48, yy + 4 + 8);
+draw_sprite(spr_bar_back, 0, xx + 4 + 22, yy + 4 + 4);
 amt = _currentPower/_maxPower;
-draw_sprite_part(spr_bar_front, 0, 0, 0, amt * 257, 42, xx + 4 + 48, yy + 4 + 8);
+draw_sprite_part(spr_bar_front, 0, 0, 0, amt * 111, 42, xx + 4 + 22, yy + 4 + 4);
 
 draw_sprite(spr_playerPower, 0, xx + 4, yy + 4);
+
+
+draw_sprite(spr_bar_back, 0, xx + 4 + 22, yy + 4 + 4 + 18);
+amt = obj_core._power/obj_core._maxPower;
+draw_sprite_part(spr_coreBar_front, 0, 0, 0, amt * 111, 42, xx + 4 + 22, yy + 4 + 4 + 18);
+
+draw_sprite(spr_core_UI, 0, xx + 4, yy + 4 + 14);
+
+draw_sprite(spr_scrap_UI, 0, xx + view_hview + 20, yy + 4);
+draw_set_font(fnt_main);
+draw_set_halign(fa_top);
+draw_set_halign(fa_left);
+draw_set_color(c_white);
+draw_text_outline(xx + view_hview + 48, yy + 4, " x " + string(_currentScrap), 1, c_black, 8);
 </string>
           </argument>
         </arguments>

@@ -31,7 +31,7 @@ _spd=6;
 _jSpd=12;
 _hSpd=0;
 _vSpd=0;
-_hookedMvSpd = 32;
+_hookedMvSpd = 48;
 
 _isGrappling = false;
 _inAir = false;
@@ -107,7 +107,7 @@ var hook = mouse_check_button_pressed(mb_left) &amp;&amp; _canBeControlled;
             speed = 0;
             _vSpd = 0;
             _hSpd = 0;
-            if !(_hookSide == "d")
+            if (_hookSide != "d")
                 _state = PlayerState.stuck;
             else
             {
@@ -144,9 +144,15 @@ var rkey = (keyboard_check(vk_right) || keyboard_check(ord('D'))) &amp;&amp; (_c
 var dkey = (keyboard_check_pressed(vk_down) || keyboard_check(ord('S'))) &amp;&amp; (_canBeControlled);
 var jkey = (keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord('W'))) || keyboard_check_pressed(ord("Z")) &amp;&amp; (_canBeControlled);
 var jkey_held = (keyboard_check(vk_up) || keyboard_check(ord('W'))) || keyboard_check(ord("Z")) &amp;&amp; (_canBeControlled);
+var charge = (keyboard_check(vk_space) || mouse_check_button(mb_right)) &amp;&amp; _canBeControlled;
 
 //if (dead==0)
 {
+    //If not pressing S
+    if (_state == PlayerState.fixing) &amp;&amp; (!charge)
+    {
+        _state = PlayerState.idle;
+    }
 
     // Check for ground
     if ((_state != PlayerState.hooking) &amp;&amp; (_state != PlayerState.stuck))
@@ -180,6 +186,16 @@ var jkey_held = (keyboard_check(vk_up) || keyboard_check(ord('W'))) || keyboard_
             {
                 _vSpd = max(_vSpd,_vSpd + 2);
             }
+        }
+    }
+    
+    if (_state == PlayerState.stuck)
+    {
+        if (jkey)
+        {
+            _vSpd = -_jSpd;
+            with (obj_hook) instance_destroy();
+            _state = PlayerState.jumping;
         }
     }
 
@@ -230,7 +246,7 @@ var jkey_held = (keyboard_check(vk_up) || keyboard_check(ord('W'))) || keyboard_
             _hSpd += 1;
         else _hSpd = 0;
         
-        if place_meeting(x,y+1,obj_solid)
+        if place_meeting(x,y+1,obj_solid) &amp;&amp; (_state != PlayerState.fixing)
             _state = PlayerState.idle;
     }
     
@@ -335,12 +351,40 @@ else if (_state == PlayerState.running)
     sprite_index = spr_main_run;
     image_speed = .25;
 }
+else if (_state == PlayerState.jumping)
+{
+    if (sprite_index != spr_main_jumping)
+    {
+        sprite_index = spr_main_jumping;
+        image_speed = .33;
+        image_index = 0;
+    }
+}
+else if (_state == PlayerState.falling)
+{
+    if (sprite_index != spr_main_falling)
+    {
+        sprite_index = spr_main_falling;
+        image_speed = .33;
+        image_index = 0;
+    }
+}
+else if (_state == PlayerState.hooking)
+{
+    sprite_index = spr_main_hooking;
+    image_speed = .4;
+}
+else if (_state == PlayerState.fixing)
+{
+    sprite_index = spr_main_fixing;
+    image_speed = .25;
+}
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="7" enumb="7">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -357,8 +401,11 @@ else if (_state == PlayerState.running)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
-draw_text(x, y - 31, string(_hookSide) + " " + string(_state));
+            <string>if (_state == PlayerState.jumping) || (_state == PlayerState.falling)
+{
+    image_speed = 0;
+    image_index = 2;
+}
 </string>
           </argument>
         </arguments>

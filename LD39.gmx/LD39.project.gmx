@@ -8,6 +8,8 @@
   <sprites name="sprites">
     <sprites name="Objects">
       <sprite>sprites\spr_solid</sprite>
+      <sprite>sprites\spr_turret</sprite>
+      <sprite>sprites\spr_turret_down</sprite>
     </sprites>
     <sprites name="Main">
       <sprite>sprites\spr_main_idle</sprite>
@@ -15,6 +17,25 @@
       <sprite>sprites\spr_hook</sprite>
       <sprite>sprites\spr_main_wallHang</sprite>
       <sprite>sprites\spr_main_hanging</sprite>
+      <sprite>sprites\spr_main_hooking</sprite>
+      <sprite>sprites\spr_main_jumping</sprite>
+      <sprite>sprites\spr_main_falling</sprite>
+      <sprite>sprites\spr_main_fixing</sprite>
+    </sprites>
+    <sprites name="Enemies">
+      <sprite>sprites\obj_enemy1_roam</sprite>
+      <sprite>sprites\spr_enemy1_fire</sprite>
+      <sprite>sprites\spr_enemy1_destroy</sprite>
+      <sprite>sprites\spr_enemy2_hover</sprite>
+      <sprite>sprites\spr_enemy2_destroy</sprite>
+      <sprite>sprites\spr_bullet</sprite>
+    </sprites>
+    <sprites name="UI">
+      <sprite>sprites\spr_power_UI</sprite>
+      <sprite>sprites\spr_playerPower</sprite>
+      <sprite>sprites\spr_bar_back</sprite>
+      <sprite>sprites\spr_bar_front</sprite>
+      <sprite>sprites\spr_cursor</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -29,11 +50,17 @@
     <objects name="Main">
       <object>objects\obj_hook</object>
       <object>objects\obj_main</object>
+      <object>objects\obj_turret</object>
     </objects>
     <object>objects\obj_control</object>
+    <object>objects\obj_cursor</object>
+    <objects name="Enemies">
+      <object>objects\obj_enemy1</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
+    <room>rooms\rm_MainLevel</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

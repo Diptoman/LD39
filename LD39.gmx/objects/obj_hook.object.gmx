@@ -28,7 +28,7 @@
             <string>var mousePointDir = point_direction(x,y,mouse_x,mouse_y);
 var mouseHitLength = 300;
 _hittingObj = collision_line_first(x,y,mouse_x + lengthdir_x(mouseHitLength, mousePointDir),mouse_y + lengthdir_y(mouseHitLength, mousePointDir),obj_solid,0,false);
-_hookSpd = 16;
+_hookSpd = 32;
 </string>
           </argument>
         </arguments>
@@ -103,17 +103,86 @@ _hookSpd = 16;
                 obj_main._hookY = _hittingObj.y + 12;
                 obj_main._hookSide = "l";
             }
+            else if (obj_main.y &lt; _hittingObj.y) &amp;&amp; (upOpen)
+            {
+                obj_main._hookX = _hittingObj.x + 4;
+                obj_main._hookY = _hittingObj.y - 1;
+                obj_main._hookSide = "d";
+            }
             else if (obj_main.y &gt; _hittingObj.y) &amp;&amp; (downOpen)
             {
                 obj_main._hookX = _hittingObj.x + 4;
                 obj_main._hookY = _hittingObj.y + 8 + 24;
                 obj_main._hookSide = "u";
             }
-            else if (obj_main.y &lt; _hittingObj.y) &amp;&amp; (upOpen)
+            
+            //Corner cases
+            //Bottom left
+            if ((obj_main.x &gt; _hittingObj.x) &amp;&amp; (rightOpen) &amp;&amp; (collision_point(_hittingObj.x + 4 + 8,_hittingObj.y + 4 + 8,obj_solid,false,true)))
             {
-                obj_main._hookX = _hittingObj.x + 4;
+                obj_main._hookX = _hittingObj.x + 16 + 8;
+                obj_main._hookY = _hittingObj.y + 4;
+                obj_main._hookSide = "l";
+            }
+            if ((obj_main.y &lt; _hittingObj.y) &amp;&amp; (upOpen) &amp;&amp; (collision_point(_hittingObj.x + 4 - 8,_hittingObj.y + 4 - 8,obj_solid,false,true)))
+            {
+                obj_main._hookX = _hittingObj.x + 4 + 8;
                 obj_main._hookY = _hittingObj.y - 1;
                 obj_main._hookSide = "d";
+            }
+            
+            //Bottom right
+            if ((obj_main.x &lt; _hittingObj.x) &amp;&amp; (leftOpen) &amp;&amp; (collision_point(_hittingObj.x + 4 - 8,_hittingObj.y + 4 + 8,obj_solid,false,true)))
+            {
+                obj_main._hookX = _hittingObj.x - 16;
+                obj_main._hookY = _hittingObj.y + 4;
+                obj_main._hookSide = "r";
+            }
+            if ((obj_main.y &lt; _hittingObj.y) &amp;&amp; (upOpen) &amp;&amp; (collision_point(_hittingObj.x + 4 + 8,_hittingObj.y + 4 - 8,obj_solid,false,true)))
+            {
+                obj_main._hookX = _hittingObj.x + 4 - 8;
+                obj_main._hookY = _hittingObj.y - 1;
+                obj_main._hookSide = "d";
+            }
+            
+            //Top right
+            if ((obj_main.x &lt; _hittingObj.x) &amp;&amp; (leftOpen) &amp;&amp; (collision_point(_hittingObj.x + 4 - 8,_hittingObj.y + 4 - 16,obj_solid,false,true)))
+            {
+                obj_main._hookX = _hittingObj.x - 16;
+                obj_main._hookY = _hittingObj.y + 12 + 8;
+                obj_main._hookSide = "r";
+            }
+            else if ((obj_main.x &lt; _hittingObj.x) &amp;&amp; (leftOpen) &amp;&amp; (collision_point(_hittingObj.x + 4 - 8,_hittingObj.y + 4 - 8,obj_solid,false,true)))
+            {
+                obj_main._hookX = _hittingObj.x - 16;
+                obj_main._hookY = _hittingObj.y + 12 + 16;
+                obj_main._hookSide = "r";
+            }
+            if ((obj_main.y &gt; _hittingObj.y) &amp;&amp; (downOpen) &amp;&amp; (collision_point(_hittingObj.x + 4 + 8,_hittingObj.y + 4 + 8,obj_solid,false,true)))
+            {
+                obj_main._hookX = _hittingObj.x + 4 - 8;
+                obj_main._hookY = _hittingObj.y + 8 + 24;
+                obj_main._hookSide = "u";
+            }
+            
+            //Top left
+            if ((obj_main.x &gt; _hittingObj.x) &amp;&amp; (rightOpen) &amp;&amp; (collision_point(_hittingObj.x + 4 + 8,_hittingObj.y + 4 - 16,obj_solid,false,true)))
+            {
+                obj_main._hookX = _hittingObj.x + 16 + 8;
+                obj_main._hookY = _hittingObj.y + 12 + 8;
+                obj_main._hookSide = "l";
+            }
+            else if ((obj_main.x &gt; _hittingObj.x) &amp;&amp; (rightOpen) &amp;&amp; (collision_point(_hittingObj.x + 4 + 8,_hittingObj.y + 4 - 8,obj_solid,false,true)))
+            {
+                obj_main._hookX = _hittingObj.x + 16 + 8;
+                obj_main._hookY = _hittingObj.y + 12 + 16;
+                obj_main._hookSide = "l";
+            }
+            if ((obj_main.y &gt; _hittingObj.y) &amp;&amp; (downOpen) &amp;&amp; (collision_point(_hittingObj.x + 4 - 8,_hittingObj.y + 4 + 8,obj_solid,false,true)))
+            {
+                obj_main._hookX = _hittingObj.x + 8;
+                obj_main._hookY = _hittingObj.y + 8 + 24;
+                obj_main._hookSide = "u";
             }
         }
     }

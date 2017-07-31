@@ -28,7 +28,7 @@
             <string>//Init vars
 _grav=1;
 _spd=6;
-_jSpd=12;
+_jSpd=10;
 _hSpd=0;
 _vSpd=0;
 _hookedMvSpd = 48;

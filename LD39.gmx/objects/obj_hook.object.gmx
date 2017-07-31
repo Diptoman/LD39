@@ -61,9 +61,10 @@ _hookSpd = 32;
         y = _hittingObj.y + 4;
         speed = 0;
         
-        if (obj_main._state != obj_main.PlayerState.hooking)
+        if (obj_main._state != obj_main.PlayerState.hooking) &amp;&amp; ((obj_main._state != obj_main.PlayerState.stuck))
         {           
             obj_main._state = obj_main.PlayerState.hooking;
+            audio_play_sound(snd_grapple, 10, 0);
         
             var leftOpen, rightOpen, upOpen, downOpen;
         

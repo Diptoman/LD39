@@ -164,6 +164,7 @@ var charge = (keyboard_check(vk_space) || mouse_check_button(mb_right)) &amp;&am
             if (jkey)
             {
                 _vSpd = -_jSpd;
+                audio_play_sound(snd_jump, 10, 0);
                 
                 /*if (_state == PlayerState.stuck)
                 {
@@ -194,6 +195,7 @@ var charge = (keyboard_check(vk_space) || mouse_check_button(mb_right)) &amp;&am
         if (jkey)
         {
             _vSpd = -_jSpd;
+            audio_play_sound(snd_jump, 10, 0);
             with (obj_hook) instance_destroy();
             _state = PlayerState.jumping;
         }

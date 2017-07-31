@@ -30,6 +30,8 @@
 _isOverlapping = false;
 
 ui = noone;
+
+audio_play_sound(snd_turretDest, 10, 0);
 </string>
           </argument>
         </arguments>

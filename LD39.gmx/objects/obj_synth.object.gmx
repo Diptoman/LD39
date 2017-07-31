@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>_batteryGenTime = 10; //Seconds
-_genSpeedUpWhenBoosted = .5; //Alarm times this factor
+_genSpeedUpWhenBoosted = .4; //Alarm times this factor
 
 _isBoosted = false;
 
@@ -190,6 +190,7 @@ if (charge)
     {
         _isBoosted = true;
         obj_control._currentScrap -= 6;
+        audio_play_sound(snd_boost, 10, 0);
     }
 }
     

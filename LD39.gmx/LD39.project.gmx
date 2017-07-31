@@ -99,6 +99,14 @@
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\sndLaser</sound>
+    <sounds name="SFX">
+      <sound>sound\snd_jump</sound>
+      <sound>sound\snd_grapple</sound>
+      <sound>sound\snd_turretDest</sound>
+      <sound>sound\snd_turretShot</sound>
+      <sound>sound\snd_boost</sound>
+      <sound>sound\snd_battery</sound>
+    </sounds>
   </sounds>
   <sprites name="sprites">
     <sprites name="Objects">
@@ -162,6 +170,9 @@
     <background>background\bg_tile1</background>
     <background>background\bg_tile2</background>
     <background>background\bg_tile3</background>
+    <background>background\bg_clouds</background>
+    <background>background\bg_sand</background>
+    <background>background\bg_sky</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -218,6 +229,8 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_main</font>
+    <font>fonts\fnt_mid</font>
+    <font>fonts\fnt_gameOver</font>
     <font>fonts\fnt_small</font>
   </fonts>
   <objects name="objects">
@@ -261,9 +274,12 @@
       <object>objects\obj_space</object>
       <object>objects\obj_boost</object>
       <object>objects\obj_repair</object>
+      <object>objects\obj_death</object>
+      <object>objects\obj_menu</object>
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_menu</room>
     <room>rooms\rm_MainLevel_new</room>
     <room>rooms\room0</room>
     <room>rooms\rm_MainLevel</room>

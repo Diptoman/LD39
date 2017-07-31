@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = .25;
+
+audio_play_sound(snd_turretShot, 10, 0);
 </string>
           </argument>
         </arguments>

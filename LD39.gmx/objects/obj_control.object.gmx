@@ -37,13 +37,14 @@ _currentPower = 200;
 _currentScrap = 0;
 _maxPower = 400;
 
-window_set_cursor(cr_none);
-cursor_sprite = spr_cursor;
 //instance_create(mouse_x, mouse_y, obj_cursor);
 
 randomize();
 
 precision = 1;
+
+_score = 0;
+alarm[1] = 30;
 </string>
           </argument>
         </arguments>
@@ -68,9 +69,57 @@ precision = 1;
 
 _wave = 1;
 _waveGap = 20;
-_minWaveGap = 10;
+_minWaveGap = 12;
 
 alarm[0] = _waveGap * 30;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>spd = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!instance_exists(obj_death))
+{
+    _score += 1;
+    alarm[1] = 30;
+}
 </string>
           </argument>
         </arguments>
@@ -167,6 +216,34 @@ alarm[0] = _waveGap * 30;
     if view_yview &gt; (room_height - view_hview)
         view_yview = (room_height - view_hview);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>spd += .2;
+
+background_x[0] = view_xview + spd;
+background_y[0] = view_yview;
+background_x[1] = view_xview + spd * 2;
+background_y[1] = view_yview;
+background_x[2] = view_xview + spd * 3;
+background_y[2] = view_yview;
 </string>
           </argument>
         </arguments>

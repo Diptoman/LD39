@@ -126,8 +126,8 @@ if (obj_control._currentPower &gt;= incAmt) &amp;&amp; (_power &lt; _maxPower)
           <argument>
             <kind>1</kind>
             <string>///Decrease energy
-alarm[0] = 45 - _lvl;
-_power -= (1 + _lvl / 2);
+alarm[0] = 60 - _lvl;
+_power -= (1 + (_lvl - 1) / 2);
 </string>
           </argument>
         </arguments>

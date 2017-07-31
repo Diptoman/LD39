@@ -145,6 +145,7 @@
       <sprite>sprites\spr_cursor</sprite>
       <sprite>sprites\spr_scrap_UI</sprite>
       <sprite>sprites\spr_core_UI</sprite>
+      <sprite>sprites\spr_arrow</sprite>
     </sprites>
     <sprites name="Laser">
       <sprite>sprites\sPlayer</sprite>

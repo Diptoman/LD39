@@ -1,0 +1,17 @@
+diff a/LD39.gmx/LD39.project.gmx b/LD39.gmx/LD39.project.gmx	(rejected hunks)
+@@ -251,9 +251,15 @@
+     <object>objects\oBlock_Curve</object>
+   </objects>
+   <rooms name="rooms">
++<<<<<<< HEAD
+     <room>rooms\rm_MainLevel</room>
+     <room>rooms\room0</room>
+     <room>rooms\room1</room>
++=======
++    <room>rooms\rm_MainLevel_new</room>
++    <room>rooms\room0</room>
++    <room>rooms\rm_MainLevel</room>
++>>>>>>> 2e2e72e92e25fd15c20792d43c8c9e9a4731637f
+   </rooms>
+   <help>
+     <rtf>help.rtf</rtf>
